@@ -3,13 +3,13 @@ from setuptools import setup
 
 setup(
     name = "django-jsonfield2",
-    version = '15.06.08',
+    version = '15.7',
     license='BSD',
    
     description='A flexible quering JSONField and associated form field to store validated JSON in your model.',
     long_description=open("README.rst").read(),
 
-    install_requires=['Django >= 1.6'],
+    install_requires=['Django >= 1.6', 'jsonpath_rw'],
     tests_require=['Django >= 1.6'],
     
     url = "https://github.com/DarioGT/django-jsonfield2",

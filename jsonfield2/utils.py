@@ -3,7 +3,7 @@ import decimal
 import types
 import json
 import uuid
-
+from django.db.models.fields.files import FileField, ImageFieldFile
 
 from django.db.models.query import QuerySet
 from django.utils import six, timezone
@@ -11,8 +11,10 @@ from django.utils.encoding import force_text
 from django.utils.functional import Promise
 
 from django.core.serializers.json import DjangoJSONEncoder
+from timedelta import total_seconds
 
-class JSONEncoder( DjangoJSONEncoder ):
+
+class JSONEncoder(DjangoJSONEncoder):
 
     def default(self, obj):
         if isinstance(obj, Promise):
@@ -63,5 +65,7 @@ def default(o):
         return o.strftime("%H:%M:%S")
     if isinstance(o, set):
         return list(o)
+    if isinstance(o, (FileField, ImageFieldFile)):
+        return o.url if o else None
 
     raise TypeError(repr(o) + " is not JSON serializable")

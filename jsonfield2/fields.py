@@ -121,7 +121,7 @@ class JSONField(six.with_metaclass(models.SubfieldBase, models.Field)):
                     lookup_type, type(value).__name__
                 ))
                 # Need a way co combine the values with '%', but don't escape that.
-                return self.get_prep_value(value)[1:-1].replace(', ', r'%')
+                # return self.get_prep_value(value)[1:-1].replace(', ', r'%')
             if isinstance(value, dict):
                 return self.get_prep_value(value)[1:-1]
             return self.to_python(self.get_prep_value(value))
